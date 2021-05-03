@@ -20,7 +20,7 @@ resource "azurerm_kubernetes_cluster" "example" {
   }
 
   identity {
-    type = "Userassigned"
+    type = "UserAssigned"
   }
 
   addon_profile {
