@@ -7,6 +7,12 @@ resource "azurerm_resource_group" "example" {
   location = var.location
 }
 
+resource "azurerm_user_assigned_identity" "testing" {
+  resource_group_name = azurerm_resource_group.example.name
+  location            = azurerm_resource_group.example.location
+   name = "testing-api"
+}
+
 resource "azurerm_kubernetes_cluster" "example" {
   name                = "${var.prefix}-k8s"
   location            = azurerm_resource_group.example.location
@@ -21,6 +27,7 @@ resource "azurerm_kubernetes_cluster" "example" {
 
   identity {
     type = "UserAssigned"
+    user_assigned_identity_id = azurerm_user_assigned_identity.testing.id
   }
 
   addon_profile {
@@ -37,7 +44,7 @@ resource "azurerm_kubernetes_cluster" "example" {
     }
 
     kube_dashboard {
-      enabled = true
+      enabled = false
     }
 
     oms_agent {
