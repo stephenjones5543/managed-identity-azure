@@ -52,3 +52,11 @@ resource "azurerm_kubernetes_cluster" "example" {
     }
   }
 }
+
+resource "helm_release" "pod_identity" {
+  name = var.pod_identity_name
+  chart = var.pod_identity_chart
+  repository = "https://raw.githubusercontent.com/Azure/aad-pod-identity/master/charts"
+  timeout = 1200
+
+}
