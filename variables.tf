@@ -7,3 +7,12 @@ variable "location" {
   description = "The Azure Region in which all resources in this example should be provisioned"
   default = "central-us"
 }
+
+variable "mysql_server_user" {
+  
+}
+
+variable "mysql_server_pwd" {
+  
+}
+
